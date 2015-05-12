@@ -107,6 +107,7 @@ CREATE TABLE IF NOT EXISTS `b2cdb`.`favoritos` (
   `idInmueble` INT(11) NOT NULL,
   `idUsuario` INT(11) NOT NULL,
   `fechaCreacion` DATETIME NULL DEFAULT NULL,
+  `eliminado` VARCHAR(45) NULL,
   PRIMARY KEY (`idFavoritos`),
   INDEX `fk_inmueble_has_usuario_usuario1_idx` (`idUsuario` ASC),
   INDEX `fk_inmueble_has_usuario_inmueble1_idx` (`idInmueble` ASC),
@@ -131,6 +132,7 @@ CREATE TABLE IF NOT EXISTS `b2cdb`.`imagen` (
   `idImagen` INT(11) NOT NULL,
   `imgBlob` LONGBLOB NULL,
   `idInmueble` INT(11) NOT NULL,
+  `eliminado` BIT(1) NULL,
   PRIMARY KEY (`idImagen`),
   INDEX `fk_imagen_inmueble1_idx` (`idInmueble` ASC),
   CONSTRAINT `fk_imagen_inmueble1`
