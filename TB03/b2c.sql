@@ -21,8 +21,9 @@ USE `b2cdb` ;
 -- Table `b2cdb`.`tipotransaccion`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `b2cdb`.`tipotransaccion` (
-  `idtipotransaccion` INT(11) NOT NULL,
+  `idtipotransaccion` INT(11) NOT NULL AUTO_INCREMENT,
   `descripcion` VARCHAR(12) NULL DEFAULT NULL,
+  `eliminado` BIT(1) NULL,
   PRIMARY KEY (`idtipotransaccion`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -32,8 +33,9 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `b2cdb`.`tipousuario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `b2cdb`.`tipousuario` (
-  `idTipoUsuario` INT(11) NOT NULL,
+  `idTipoUsuario` INT(11) NOT NULL AUTO_INCREMENT,
   `descripcion` VARCHAR(20) NULL DEFAULT NULL,
+  `eliminado` BIT(1) NULL,
   PRIMARY KEY (`idTipoUsuario`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -43,7 +45,7 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `b2cdb`.`usuario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `b2cdb`.`usuario` (
-  `idUsuario` INT(11) NOT NULL,
+  `idUsuario` INT(11) NOT NULL AUTO_INCREMENT,
   `usuario` VARCHAR(50) NULL DEFAULT NULL,
   `password` VARCHAR(50) NULL DEFAULT NULL,
   `nombre` VARCHAR(200) NULL DEFAULT NULL,
@@ -69,7 +71,7 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `b2cdb`.`inmueble`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `b2cdb`.`inmueble` (
-  `idInmueble` INT(11) NOT NULL,
+  `idInmueble` INT(11) NOT NULL AUTO_INCREMENT,
   `titulo` VARCHAR(200) NULL DEFAULT NULL,
   `direccion` VARCHAR(200) NULL DEFAULT NULL,
   `distrito` VARCHAR(100) NULL DEFAULT NULL,
@@ -103,11 +105,11 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `b2cdb`.`favoritos`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `b2cdb`.`favoritos` (
-  `idFavoritos` INT(11) NOT NULL,
+  `idFavoritos` INT(11) NOT NULL AUTO_INCREMENT,
   `idInmueble` INT(11) NOT NULL,
   `idUsuario` INT(11) NOT NULL,
   `fechaCreacion` DATETIME NULL DEFAULT NULL,
-  `eliminado` VARCHAR(45) NULL,
+  `eliminado` BIT(1) NULL,
   PRIMARY KEY (`idFavoritos`),
   INDEX `fk_inmueble_has_usuario_usuario1_idx` (`idUsuario` ASC),
   INDEX `fk_inmueble_has_usuario_inmueble1_idx` (`idInmueble` ASC),
@@ -129,7 +131,7 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `b2cdb`.`imagen`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `b2cdb`.`imagen` (
-  `idImagen` INT(11) NOT NULL,
+  `idImagen` INT(11) NOT NULL AUTO_INCREMENT,
   `imgBlob` LONGBLOB NULL,
   `idInmueble` INT(11) NOT NULL,
   `eliminado` BIT(1) NULL,
@@ -148,9 +150,10 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `b2cdb`.`tipoinmueble`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `b2cdb`.`tipoinmueble` (
-  `idTipoInmueble` INT(11) NOT NULL,
+  `idTipoInmueble` INT(11) NOT NULL AUTO_INCREMENT,
   `descripcion` VARCHAR(20) NULL DEFAULT NULL,
   `idInmueble` INT(11) NOT NULL,
+  `eliminado` BIT(1) NULL,
   PRIMARY KEY (`idTipoInmueble`),
   INDEX `fk_tipoinmueble_inmueble1_idx` (`idInmueble` ASC),
   CONSTRAINT `fk_tipoinmueble_inmueble1`
